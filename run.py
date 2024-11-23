@@ -1,32 +1,35 @@
 # Your code goes here.
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
-import gspread
-from google.oauth2.service_account import Credentials
+from quiz_app.model.sheet import QuestionSheet
+from quiz_app.model.sheet import UserDataSheet
 
-SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
-    ]
-
-CREDS = Credentials.from_service_account_file('creds.json')
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('quiz_questions')
-
-def get_question():
+def get_question(question_number):
+    """
+    This method to retrieve a random question from a specified sheet
+    depending on question number, and using difficulty level and question category
+    """
     print("Retrieving question...\n")
-    easy_science = SHEET.worksheet("easy_science").get_all_values()
-    question = easy_science[2][0]
-    return question
-def main():
-    """
-    run all program function
-    """
-    retrieved_question = get_question()
+    level_cat_arr = [("easy","science"),("easy","history"),("easy","shows"),
+    ("medium","science"),("medium","history"),("medium","shows"),
+    ("hard","science"),("hard","history"),("hard","shows")]
+    level,category= level_cat_arr[question_number-1]
+    question = QuestionSheet(level, category)
+    retrieved_question = question.get_random_question()
     print(retrieved_question)
 
+def main():
+    """
+    Run all program function
+    """
+    username = input("Please Enter Your Username:\n")
+    user = UserDataSheet(f"{username}")
+    user_data = user.get_user_data()
+    get_question(user_data.question_number)
+    
 
-print("Welcome to The Best Quiz App")
+"""
+Starting point to execute
+"""
+print("Welcome to The Best Quiz App\n")
 main()
