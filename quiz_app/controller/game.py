@@ -26,19 +26,33 @@ def get_question(question_number):
     return retrieved_question
 
 def validate_answer(question, answer):
-    entered_answer = question.answers[answer-1]
-    if entered_answer.is_correct():
-        print("Correct")
-        return True
+    """
+    Inside the try, converts string value into int.
+    Raises ValueError if strings cannot be converted into int,
+    or if it is not one of 4 answers options (1,2,3,4).
+    """
+    possible_answers = [1,2,3,4]
+    ans = int(answer)
+    if ans not in possible_answers:
+        colored_print("Invalid data: Exactly a number from 1 to 4 is required, please try again:",constants.YELLOW,"center")
+        print("\n")
+        ans = input("",constants.CENTER_SPACE)
+        return validate_answer(question, ans)
     else:
-        return False 
+        entered_answer = question.answers[ans-1]
+        if entered_answer.is_correct():
+            print("Correct")
+            return True
+        else:
+            return False
+
+
 
 def continue_play(user,user_data,question):
     while True:
-
-        print("\n\n")
-        colored_print("Your Answer:",constants.MAGENTA,"center")
-        answer = int(input())
+        print("\n")
+        colored_print("Please Enter Your Answer:",constants.MAGENTA,"center")
+        answer = int(input(constants.CENTER_SPACE))
         max_points, min_points = question.calculate_question_points()
         if validate_answer(question, answer):
             user_data.points += max_points
@@ -46,7 +60,8 @@ def continue_play(user,user_data,question):
             user.update_user_sheet(user_data)
             next_question = get_question(user_data.question_number)
         else:
-            second_answer = int(input("Incorrect, please try again:\n"))
+            colored_print("Incorrect, please try again:",constants.RED,"center")
+            second_answer = int(input("\n",constants.CENTER_SPACE))
             if validate_answer(question, second_answer):
                 user_data.points += min_points
                 user_data.question_number +=1
@@ -58,7 +73,9 @@ def continue_play(user,user_data,question):
 
 def start_play(user):
     user_data = user.get_user_data()
-    colored_print("Retrieving question...\n",constants.YELLOW,"center")
+    print("\n")
+    colored_print("Retrieving question...",constants.YELLOW,"center")
+    print("\n")
     question = get_question(user_data.question_number)
     continue_play(user,user_data,question)
 

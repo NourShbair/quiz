@@ -13,7 +13,7 @@ def main():
     """
     show_introduction()
     colored_print("Please Enter Your Username:",constants.MAGENTA,"center")
-    username = input()
+    username = input(constants.CENTER_SPACE)
     user = UserDataSheet(f"{username}")
     start_play(user)
 
