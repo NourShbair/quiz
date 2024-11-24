@@ -54,9 +54,9 @@ class QuestionSheet(Sheet):
     
     def get_random_question(self):
         all_values = self.get_all_values()
-        random_number = randrange(len(all_values))+1
+        random_number = randrange(len(all_values)-1)+1
         question_data = all_values[random_number]
-        return Question(question_data[0], question_data[1:4],question_data[-1] )
+        return Question(question_data[0], question_data[1:5],question_data[-1], self.level)
 
 class UserDataSheet(Sheet):
     """
@@ -70,18 +70,27 @@ class UserDataSheet(Sheet):
         self.username = username
         super().__init__("users")
 
+
     def get_user_data(self):
         all_users = self.get_all_values()
         user_data = ""
+        user_id = 1
         for user in all_users:
             if user[0] == self.username:
                 user_data = user
-                return User(user_data[0], user_data[1], user_data[2])
-        user = User(self.username,1,0)
+                return User(user_data[0], user_data[1], user_data[2], user_id)
+            user_id += 1
+        user = User(self.username,1,0,user_id)
         self.update_user_sheet(user)
         return user
-
+    
     def update_user_sheet(self,User):
+        worksheet_to_update = self.connetion.worksheet("users")
+        worksheet_to_update.update_acell(f'B{User.id}',User.question_number)
+        worksheet_to_update.update_acell(f'C{User.id}',User.points)
+
+
+    def create_user(self,User):
         worksheet_to_update = self.connetion.worksheet("users")
         user_row = [User.username, User.question_number, User.points]
         worksheet_to_update.append_row(user_row)
