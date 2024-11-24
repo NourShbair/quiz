@@ -1,4 +1,8 @@
 from quiz_app.model.sheet import QuestionSheet
+from quiz_app.view.printer import colored_print
+from quiz_app.view.printer import colored_print_fb
+
+from quiz_app.view import constants
 
 def get_question(question_number):
     """
@@ -11,11 +15,14 @@ def get_question(question_number):
     level,category= level_cat_arr[question_number-1]
     question = QuestionSheet(level, category)
     retrieved_question = question.get_random_question()
-    print(retrieved_question)
+    colored_print(f"{question_number}. {retrieved_question}",constants.CYAN,"center")
     order = 1
+    answers_to_print = ""
     for ans in retrieved_question.answers:
-        print(f"{order}. {ans}")
+        #print the answers in the same line using "end" attribute
+        answers_to_print = answers_to_print + str(order)+". " + ans.text + "      "
         order += 1
+    colored_print(answers_to_print,constants.WHITE,"center")
     return retrieved_question
 
 def validate_answer(question, answer):
@@ -28,7 +35,10 @@ def validate_answer(question, answer):
 
 def continue_play(user,user_data,question):
     while True:
-        answer = int(input("Please Enter The Number Of The Correct Answer:\n"))
+
+        print("\n\n")
+        colored_print("Your Answer:",constants.MAGENTA,"center")
+        answer = int(input())
         max_points, min_points = question.calculate_question_points()
         if validate_answer(question, answer):
             user_data.points += max_points
@@ -48,7 +58,7 @@ def continue_play(user,user_data,question):
 
 def start_play(user):
     user_data = user.get_user_data()
-    print("Retrieving question...\n")
+    colored_print("Retrieving question...\n",constants.YELLOW,"center")
     question = get_question(user_data.question_number)
     continue_play(user,user_data,question)
 
