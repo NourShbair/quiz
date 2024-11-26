@@ -81,7 +81,7 @@ class UserDataSheet(Sheet):
                 return User(user_data[0], user_data[1], user_data[2], user_id)
             user_id += 1
         user = User(self.username,1,0,user_id)
-        self.update_user_sheet(user)
+        self.create_user(user)
         return user
     
     def update_user_sheet(self,User):

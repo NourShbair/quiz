@@ -9,6 +9,9 @@ def get_question(question_number):
     This method to retrieve a random question from a specified sheet
     depending on question number, and using difficulty level and question category
     """
+    print("\n")
+    colored_print("Retrieving question...",constants.YELLOW,"center")
+    print("\n")
     level_cat_arr = [("easy","science"),("easy","history"),("easy","shows"),
     ("medium","science"),("medium","history"),("medium","shows"),
     ("hard","science"),("hard","history"),("hard","shows")]
@@ -41,12 +44,12 @@ def validate_answer(question, answer):
     else:
         entered_answer = question.answers[ans-1]
         if entered_answer.is_correct():
+            print("\n")
             colored_print("Great job! 🎉 That’s the correct answer! Keep it up!",constants.GREEN,"center")
             print("\n")
             return True
         else:
             return False
-
 
 
 def continue_play(user,user_data,question):
@@ -63,7 +66,6 @@ def continue_play(user,user_data,question):
         else:
             print("\n")
             colored_print("Incorrect, please try again:",constants.RED,"center")
-            print("\n")
             second_answer = int(input(constants.CENTER_SPACE))
             if validate_answer(question, second_answer):
                 user_data.points += min_points
@@ -71,14 +73,15 @@ def continue_play(user,user_data,question):
                 user.update_user_sheet(user_data)
                 question = get_question(user_data.question_number)
             else:
-                exit(0)
+                colored_print(f"Sorry! incorrect for the second time, the correct answer is: {question.correct_answer}",constants.RED,"center")
+                user_data.question_number +=1
+                user.update_user_sheet(user_data)
+                question = get_question(user_data.question_number)
+
             
 
 def start_play(user):
     user_data = user.get_user_data()
-    print("\n")
-    colored_print("Retrieving question...",constants.YELLOW,"center")
-    print("\n")
     question = get_question(user_data.question_number)
     continue_play(user,user_data,question)
 

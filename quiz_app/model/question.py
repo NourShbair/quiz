@@ -11,8 +11,9 @@ class Question(Printable):
     # text: str, answers: [str], correct_answer: str, difficulty: str
     def __init__(self, text, answers, correct_answer, difficulty):
         self.text = text
-        self.difficulty = difficulty
         self.answers = []
+        self.correct_answer = correct_answer
+        self.difficulty = difficulty
         for answer in answers:
             # The Answer object has to vars, the answer text, and a flag to determine if it is the correct answer
             self.answers.append(Answer(answer, answer == correct_answer))
