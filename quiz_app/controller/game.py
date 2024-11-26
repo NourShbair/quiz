@@ -4,29 +4,37 @@ from quiz_app.view.printer import colored_print_fb
 
 from quiz_app.view import constants
 
-def get_question(question_number):
+def get_question(user_data):
     """
     This method to retrieve a random question from a specified sheet
     depending on question number, and using difficulty level and question category
     """
-    print("\n")
-    colored_print("Retrieving question...",constants.YELLOW,"center")
-    print("\n")
-    level_cat_arr = [("easy","science"),("easy","history"),("easy","shows"),
-    ("medium","science"),("medium","history"),("medium","shows"),
-    ("hard","science"),("hard","history"),("hard","shows")]
-    level,category= level_cat_arr[question_number-1]
-    question = QuestionSheet(level, category)
-    retrieved_question = question.get_random_question()
-    colored_print(f"{question_number}. {retrieved_question}",constants.CYAN,"center")
-    order = 1
-    answers_to_print = ""
-    for ans in retrieved_question.answers:
-        #print the answers in the same line using "end" attribute
-        answers_to_print = answers_to_print + str(order)+". " + ans.text + "      "
-        order += 1
-    colored_print(answers_to_print,constants.WHITE,"center")
-    return retrieved_question
+    ques_number = user_data.question_number
+    if(ques_number<10):
+        print("\n")
+        colored_print("Retrieving question...",constants.YELLOW,"center")
+        print("\n")
+        level_cat_arr = [("easy","science"),("easy","history"),("easy","shows"),
+        ("medium","science"),("medium","history"),("medium","shows"),
+        ("hard","science"),("hard","history"),("hard","shows")]
+        level,category= level_cat_arr[ques_number-1]
+        question = QuestionSheet(level, category)
+        retrieved_question = question.get_random_question()
+        colored_print(f"{ques_number}. {retrieved_question}",constants.CYAN,"center")
+        order = 1
+        answers_to_print = ""
+        for ans in retrieved_question.answers:
+            #print the answers in the same line using "end" attribute
+            answers_to_print = answers_to_print + str(order)+". " + ans.text + "      "
+            order += 1
+        colored_print(answers_to_print,constants.WHITE,"center")
+        return retrieved_question
+    else:
+        colored_print(constants.CONGRATULATIONS_MSG,constants.MAGENTA,"")
+        colored_print(f"You scored: {user_data.points} points",constants.MAGENTA,"center")
+
+        exit(0)
+
 
 def validate_answer(question, answer):
     """
@@ -39,14 +47,13 @@ def validate_answer(question, answer):
     if ans not in possible_answers:
         colored_print("Invalid data: Exactly a number from 1 to 4 is required, please try again:",constants.YELLOW,"center")
         print("\n")
-        ans = input("",constants.CENTER_SPACE)
+        ans = input(constants.CENTER_SPACE)
         return validate_answer(question, ans)
     else:
         entered_answer = question.answers[ans-1]
         if entered_answer.is_correct():
             print("\n")
             colored_print("Great job! 🎉 That’s the correct answer! Keep it up!",constants.GREEN,"center")
-            print("\n")
             return True
         else:
             return False
@@ -62,7 +69,7 @@ def continue_play(user,user_data,question):
             user_data.points += max_points
             user_data.question_number +=1
             user.update_user_sheet(user_data)
-            question = get_question(user_data.question_number)
+            question = get_question(user_data)
         else:
             print("\n")
             colored_print("Incorrect, please try again:",constants.RED,"center")
@@ -71,18 +78,18 @@ def continue_play(user,user_data,question):
                 user_data.points += min_points
                 user_data.question_number +=1
                 user.update_user_sheet(user_data)
-                question = get_question(user_data.question_number)
+                question = get_question(user_data)
             else:
                 colored_print(f"Sorry! incorrect for the second time, the correct answer is: {question.correct_answer}",constants.RED,"center")
                 user_data.question_number +=1
                 user.update_user_sheet(user_data)
-                question = get_question(user_data.question_number)
+                question = get_question(user_data)
 
             
 
 def start_play(user):
     user_data = user.get_user_data()
-    question = get_question(user_data.question_number)
+    question = get_question(user_data)
     continue_play(user,user_data,question)
 
 

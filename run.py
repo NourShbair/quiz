@@ -18,7 +18,7 @@ def main():
     start_play(user)
 
 def show_introduction():
-    colored_print(constants.WELCOME_MESSAGE,constants.CYAN,"center")
+    colored_print(constants.WELCOME_MSG,constants.CYAN,"")
     colored_print("""\n\n
     • You’ll answer 9 questions from 3 categories: Science, History, and Shows.\n
     • Questions range from Easy to Hard.\n
@@ -26,8 +26,6 @@ def show_introduction():
     """,constants.GREEN,"center")
     
     colored_print("Let’s see how much you know. Good luck! 🎯",constants.WHITE,"center")
-
-
 
 """
 Starting point to execute
