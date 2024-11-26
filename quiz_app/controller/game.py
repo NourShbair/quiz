@@ -20,6 +20,7 @@ def get_question(user_data):
         level,category= level_cat_arr[ques_number-1]
         question = QuestionSheet(level, category)
         retrieved_question = question.get_random_question()
+        print(constants.SEPERATOR_LINE + "\n")
         colored_print(f"{ques_number}. {retrieved_question}",constants.CYAN,"center")
         order = 1
         answers_to_print = ""
@@ -72,7 +73,7 @@ def continue_play(user,user_data,question):
             question = get_question(user_data)
         else:
             print("\n")
-            colored_print("Incorrect, please try again:",constants.RED,"center")
+            colored_print("Incorrect answer, please try again:",constants.RED,"center")
             second_answer = int(input(constants.CENTER_SPACE))
             if validate_answer(question, second_answer):
                 user_data.points += min_points
@@ -84,7 +85,6 @@ def continue_play(user,user_data,question):
                 user_data.question_number +=1
                 user.update_user_sheet(user_data)
                 question = get_question(user_data)
-
             
 
 def start_play(user):
