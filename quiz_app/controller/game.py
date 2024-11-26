@@ -41,7 +41,8 @@ def validate_answer(question, answer):
     else:
         entered_answer = question.answers[ans-1]
         if entered_answer.is_correct():
-            print("Correct")
+            colored_print("Great job! 🎉 That’s the correct answer! Keep it up!",constants.GREEN,"center")
+            print("\n")
             return True
         else:
             return False
@@ -58,15 +59,17 @@ def continue_play(user,user_data,question):
             user_data.points += max_points
             user_data.question_number +=1
             user.update_user_sheet(user_data)
-            next_question = get_question(user_data.question_number)
+            question = get_question(user_data.question_number)
         else:
+            print("\n")
             colored_print("Incorrect, please try again:",constants.RED,"center")
-            second_answer = int(input("\n",constants.CENTER_SPACE))
+            print("\n")
+            second_answer = int(input(constants.CENTER_SPACE))
             if validate_answer(question, second_answer):
                 user_data.points += min_points
                 user_data.question_number +=1
                 user.update_user_sheet(user_data)
-                next_question = get_question(user_data.question_number)
+                question = get_question(user_data.question_number)
             else:
                 exit(0)
             
