@@ -12,7 +12,7 @@ def get_question(user_data):
     ques_number = user_data.question_number
     if(ques_number<10):
         print("\n")
-        colored_print("Retrieving question...",constants.YELLOW,"center")
+        colored_print("Retrieving question...\n",constants.YELLOW,"center")
         print("\n")
         level_cat_arr = [("easy","science"),("easy","history"),("easy","shows"),
         ("medium","science"),("medium","history"),("medium","shows"),

@@ -23,6 +23,7 @@ def show_introduction():
     • You’ll answer 9 questions from 3 categories: Science, History, and Shows.\n
     • Questions range from Easy to Hard.\n
     • Each question has 4 options; type the number (1,2,3,or 4) of the correct answer and hit Enter.\n
+    • You’ll earn full points for answering on the first try, half points on the second, and 0 points if you fail twice.\n
     """,constants.GREEN,"center")
     
     colored_print("Let’s see how much you know. Good luck! 🎯",constants.WHITE,"center")
