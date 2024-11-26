@@ -13,10 +13,23 @@ def main():
     """
     show_introduction()
     colored_print("Please Enter Your Username:",constants.MAGENTA,"center")
-    username = input(constants.CENTER_SPACE)
-    user = UserDataSheet(f"{username}")
-    start_play(user)
+    while True:
+        username = input(constants.CENTER_SPACE)
+        if len(username)>20:
+            colored_print("Invalid username, please choose a username contains less than 20 charachters",constants.RED,"center")
 
+        elif validate_username(username):
+            user = UserDataSheet(f"{username}")
+            start_play(user)
+        else:
+            colored_print("Invalid username, please choose a username contains at least one character",constants.RED,"center")
+
+def validate_username(name):
+    
+    for char in name:
+        if char.isalpha():
+            return True
+    return False
 def show_introduction():
     colored_print(constants.WELCOME_MSG,constants.CYAN,"")
     colored_print("""\n\n
