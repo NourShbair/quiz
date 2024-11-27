@@ -1,4 +1,4 @@
-#This file to declare all the colors constants to use by colorama
+# This file to declare all the colors constants to use by colorama
 from colorama import init as colorama_init
 from colorama import Fore
 from colorama import Back

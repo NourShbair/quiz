@@ -13,10 +13,12 @@ def main():
     Run all program function
     """
     show_introduction()
+    print("\n")
     colored_print("Please Enter Your Username:", constants.MAGENTA, "center")
     while True:
         username = input(constants.CENTER_SPACE)
         if len(username) > 20:
+            print("\n")
             colored_print(
                 "Invalid username, please choose a username contains "
                 "less than 20 charachters",
@@ -41,7 +43,7 @@ def validate_username(name):
     for char in name:
         if char.isalpha():
             return True
-    return False
+    return True
 
 
 def show_introduction():

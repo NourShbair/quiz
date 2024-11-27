@@ -15,7 +15,6 @@ def get_question(user_data):
     if ques_number < 10:
         print("\n")
         colored_print("Retrieving question...\n", constants.YELLOW, "center")
-        print("\n")
         level_cat_arr = [
             ("easy", "science"),
             ("easy", "history"),
@@ -62,6 +61,7 @@ def validate_answer(question, answer):
     possible_answers = [1, 2, 3, 4]
     ans = int(answer)
     if ans not in possible_answers:
+        print("\n")
         colored_print(
             "Invalid data: pleaser enter a number from 1,2,3 and 4:",
             constants.YELLOW,
@@ -81,7 +81,7 @@ def validate_answer(question, answer):
             )
             return True
         else:
-            return False
+            return True
 
 
 def continue_play(user, user_data, question):

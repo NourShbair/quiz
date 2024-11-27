@@ -17,7 +17,7 @@ class Sheet:
     This class for google Sheet object,
     when passing the sheet name for the constructor, call the connect function:
     which has the suitable commands to access the sheet
-    as well, this class contins a function to retrieve all data from 
+    as well, this class contins a function to retrieve all data from
     the appropriate worksheet
     """
 
@@ -41,7 +41,7 @@ class QuestionSheet(Sheet):
     so it is a subclass from superclass "Sheet"
     Its constructor contains level difficulty (easy, medium, hard)
     and category (science, history, show)
-    It contains a function for retrieving a random question from 
+    It contains a function for retrieving a random question from
     the appropriate worksheet
     depending on its name (which is level_category)
     """
@@ -71,7 +71,7 @@ class UserDataSheet(Sheet):
     Its constructor contains username which supposed to be unique
     to differentiate between users
     It contains a function for retrieving the user data from User worksheet
-    and also contains another function to update the sheet with 
+    and also contains another function to update the sheet with
     new records of the user
     """
 
