@@ -18,7 +18,8 @@ def main():
         username = input(constants.CENTER_SPACE)
         if len(username) > 20:
             colored_print(
-                "Invalid username, please choose a username contains less than 20 charachters",
+                "Invalid username, please choose a username contains "
+                "less than 20 charachters",
                 constants.RED,
                 "center",
             )
@@ -28,7 +29,8 @@ def main():
             start_play(user)
         else:
             colored_print(
-                "Invalid username, please choose a username contains at least one character",
+                "Invalid username, please choose a username contains "
+                "at least one character",
                 constants.RED,
                 "center",
             )
@@ -46,10 +48,11 @@ def show_introduction():
     colored_print(constants.WELCOME_MSG, constants.CYAN, "")
     colored_print(
         """\n\n
-    • You’ll answer 9 questions from 3 categories: Science, History, and Shows.\n
+    • Answer 9 questions from 3 categories: Science, History, and Shows.\n
     • Questions range from Easy to Hard.\n
-    • Each question has 4 options; type the number (1,2,3,or 4) of the correct answer and hit Enter.\n
-    • You’ll earn full points for answering on the first try, half points on the second, and 0 points if you fail twice.\n
+    • Each question has 4 options.\n
+    • Enter the number of your answer (1-4) and press Enter.\n
+    • Earn full points on the first try,half on the second,0 after two fails.\n
     """,
         constants.GREEN,
         "center",

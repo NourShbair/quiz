@@ -1,4 +1,4 @@
-# This file to declare all the colors constants to use by colorama
+#This file to declare all the colors constants to use by colorama
 from colorama import init as colorama_init
 from colorama import Fore
 from colorama import Back
@@ -25,9 +25,10 @@ B_WHITE = Back.WHITE
 B_BLACK = Back.BLACK
 
 
+
 columns = shutil.get_terminal_size().columns
-CENTER_SPACE = " " * (columns // 2)
-SEPERATOR_LINE = "=" * columns
+CENTER_SPACE = " " * (columns//2)
+SEPERATOR_LINE = "="*columns
 
 WELCOME_MSG = """
                                 ▒█░░▒█ █▀▀ █░░ █▀▀ █▀▀█ █▀▄▀█ █▀▀ 　 ▀▀█▀▀ █▀▀█ 　 ▀▀█▀▀ █░░█ █▀▀ 　 █░░█ █░░ ▀▀█▀▀ ░▀░ █▀▄▀█ █▀▀█ ▀▀█▀▀ █▀▀ 
@@ -47,3 +48,5 @@ CONGRATULATIONS_MSG = """
                         ╚█████╔╝╚█████╔╝██║░╚███║╚██████╔╝██║░░██║██║░░██║░░░██║░░░╚██████╔╝███████╗██║░░██║░░░██║░░░██║╚█████╔╝██║░╚███║██████╔╝██╗
                         ░╚════╝░░╚════╝░╚═╝░░╚══╝░╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░░╚═════╝░╚══════╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝╚═════╝░╚═╝
 """
+
+

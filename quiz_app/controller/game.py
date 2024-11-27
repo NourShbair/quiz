@@ -8,7 +8,8 @@ from quiz_app.view import constants
 def get_question(user_data):
     """
     This method to retrieve a random question from a specified sheet
-    depending on question number, and using difficulty level and question category
+    depending on question number, and using difficulty level and
+    question category
     """
     ques_number = user_data.question_number
     if ques_number < 10:
@@ -30,7 +31,9 @@ def get_question(user_data):
         question = QuestionSheet(level, category)
         retrieved_question = question.get_random_question()
         print(constants.SEPERATOR_LINE + "\n")
-        colored_print(f"{ques_number}. {retrieved_question}", constants.CYAN, "center")
+        question_to_print = f"{ques_number}. {retrieved_question}"
+        colored_print(question_to_print, constants.CYAN, "center")
+        print("\n")
         order = 1
         answers_to_print = ""
         for ans in retrieved_question.answers:
@@ -44,7 +47,7 @@ def get_question(user_data):
     else:
         colored_print(constants.CONGRATULATIONS_MSG, constants.MAGENTA, "")
         colored_print(
-            f"You scored: {user_data.points} points", constants.MAGENTA, "center"
+            f"Score: {user_data.points} points", constants.MAGENTA, "center"
         )
 
         exit(0)
@@ -60,7 +63,7 @@ def validate_answer(question, answer):
     ans = int(answer)
     if ans not in possible_answers:
         colored_print(
-            "Invalid data: Exactly a number from 1 to 4 is required, please try again:",
+            "Invalid data: pleaser enter a number from 1,2,3 and 4:",
             constants.YELLOW,
             "center",
         )
@@ -104,8 +107,9 @@ def continue_play(user, user_data, question):
                 user.update_user_sheet(user_data)
                 question = get_question(user_data)
             else:
+                correct = question.correct_answer
                 colored_print(
-                    f"Sorry! incorrect for the second time, the correct answer is: {question.correct_answer}",
+                    f"Sorry, incorrect again, correct answer is: {correct}",
                     constants.RED,
                     "center",
                 )
