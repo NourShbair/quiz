@@ -58,9 +58,8 @@ def validate_answer(question, answer):
     Raises ValueError if strings cannot be converted into int,
     or if it is not one of 4 answers options (1,2,3,4).
     """
-    possible_answers = [1, 2, 3, 4]
-    ans = int(answer)
-    if ans not in possible_answers:
+    possible_answers = ["1", "2", "3", "4"]
+    if answer not in possible_answers:
         print("\n")
         colored_print(
             "Invalid data: pleaser enter a number from 1,2,3 and 4:",
@@ -68,10 +67,10 @@ def validate_answer(question, answer):
             "center",
         )
         print("\n")
-        ans = input(constants.CENTER_SPACE)
-        return validate_answer(question, ans)
+        answer = input(constants.CENTER_SPACE)
+        return validate_answer(question, answer)
     else:
-        entered_answer = question.answers[ans - 1]
+        entered_answer = question.answers[int(answer) - 1]
         if entered_answer.is_correct():
             print("\n")
             colored_print(
@@ -88,7 +87,7 @@ def continue_play(user, user_data, question):
     while True:
         print("\n")
         colored_print("Please Enter Your Answer:", constants.MAGENTA, "center")
-        answer = int(input(constants.CENTER_SPACE))
+        answer = input(constants.CENTER_SPACE)
         max_points, min_points = question.calculate_question_points()
         if validate_answer(question, answer):
             user_data.points += max_points
