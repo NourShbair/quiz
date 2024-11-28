@@ -41,7 +41,10 @@ Defensive programming was manually tested with the below user acceptance testing
 
 | Feature | Expectation | Test | Result | Fix | Screenshot |
 | --- | --- | --- | --- | --- | --- |
-| X | x | x | x | x | x |
+| Input Validation | Ensures the user enters a valid option (1, 2, 3, or 4) for each question. | Provided invalid inputs (e.g., letters, special characters, numbers outside the range) to confirm that the app prompts users with a clear error message and re-requests valid input. |The feature behaved as expected | Test concluded and passed | ![screenshot](documentation/defensive/defensive-1.png)
+| Graceful Handling of Unexpected Restarts | Handles cases where the user reopens the app after completing the quiz. | Verified that the app correctly identifies completed quizzes and displays a message to reset progress by pressing “R.” |The feature behaved as expected | Test concluded and passed | ![screenshot](documentation/defensive/defensive-2.png)
+| Robust Question Navigation |  Ensures users can navigate through questions even if they input invalid answers multiple times. | Checked scenarios where the user fails twice on a question and validated that the app skips to the next question without breaking. |The feature behaved as expected | Test concluded and passed | -
+| Score Calculation and Integrity | Ensures that scores are calculated accurately based on the number of correct answers and attempts per question. | Verified score accuracy across different scenarios, from perfect scores to skipped questions. |The feature behaved as expected | Test concluded and passed | ![screenshot](documentation/defensive/defensive-3.png)
 
 
 ## Bugs
