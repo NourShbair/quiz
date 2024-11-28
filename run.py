@@ -33,11 +33,10 @@ def main():
             if user_data.question_number > 9:
                 print("\n")
                 colored_print(
-                "You've already finish all the levels with: "
-                f"{user_data.points} points, Enter R to restart the quiz.",
-                constants.WHITE,
-                "center",
-            )
+                    """
+                    You've already finish all the levels,
+                    Enter R to restart the quiz.
+                    """, constants.WHITE, "center")
                 entered_value = input(constants.CENTER_SPACE)
                 if entered_value == "R":
                     restart_quiz(user)
