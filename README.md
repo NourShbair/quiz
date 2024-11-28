@@ -35,9 +35,9 @@ The Text-Based Quiz Game is a Python application that tests your knowledge throu
 
     - Immediate feedback on your answers.
 
-- **Leaderboard:**
+- **Progress Reset Option:**
 
-    - Store score rankings by integrating with an Google Sheet API.
+    - If the user has already completed the quiz, they will be prompted to reset their progress by pressing “R” when they open the app again.
 
 
 
