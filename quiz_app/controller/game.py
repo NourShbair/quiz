@@ -81,7 +81,7 @@ def validate_answer(question, answer):
             )
             return True
         else:
-            return True
+            return False
 
 
 def continue_play(user, user_data, question):

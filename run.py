@@ -28,7 +28,21 @@ def main():
 
         elif validate_username(username):
             user = UserDataSheet(f"{username}")
-            start_play(user)
+            user_data = user.get_user_data()
+            # Check if the user already finish all levels
+            if user_data.question_number > 9:
+                print("\n")
+                colored_print(
+                "You've already finish all the levels with: "
+                f"{user_data.points} points, Enter R to restart the quiz.",
+                constants.WHITE,
+                "center",
+            )
+                entered_value = input(constants.CENTER_SPACE)
+                if entered_value == "R":
+                    restart_quiz(user)
+            else:
+                start_play(user)
         else:
             colored_print(
                 "Invalid username, please choose a username contains "
@@ -43,7 +57,15 @@ def validate_username(name):
     for char in name:
         if char.isalpha():
             return True
-    return True
+    return False
+
+
+def restart_quiz(user):
+    user_data = user.get_user_data()
+    user_data.points = 0
+    user_data.question_number = 1
+    user.update_user_sheet(user_data)
+    start_play(user)
 
 
 def show_introduction():
