@@ -31,12 +31,12 @@ def main():
             user_data = user.get_user_data()
             # Check if the user already finish all levels
             if user_data.question_number > 9:
+                points = user_data.points
                 print("\n")
                 colored_print(
-                    """
-                    You've already finish all the levels,
-                    Enter R to restart the quiz.
-                    """, constants.WHITE, "center")
+                    "You've already finish all the levels, "
+                    "Enter R to restart the quiz."
+                    , constants.GREEN, "center")
                 entered_value = input(constants.CENTER_SPACE)
                 if entered_value == "R":
                     restart_quiz(user)
@@ -86,7 +86,8 @@ def show_introduction():
     )
 
 
-"""
-Starting point to execute
-"""
-main()
+if __name__ == "__main__":
+    """
+    Starting point to execute
+    """
+    main()

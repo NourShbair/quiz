@@ -19,10 +19,13 @@ The Text-Based Quiz Game is a Python application that tests your knowledge throu
 
     - Tackle questions at **Easy**, **Medium**, or **Hard** levels based on your preference.
 
+        ![screenshot](documentation/features/feature-level.png)
+
 - **Three Categories:**
 
     - A random question from **Science**, **History**, or **Shows** for a customized quiz experience.
 
+    ![screenshot](documentation/features/feature-category.png)
 
 - **Dynamic Scoring System:**
 
@@ -30,14 +33,20 @@ The Text-Based Quiz Game is a Python application that tests your knowledge throu
 	- Earn half points for a correct answer on the **second try**.
 	- Get **0 points** if you fail twice.
 
+        ![screenshot](documentation/features/feature-points.png)
 
 - **Interactive Gameplay:**
 
     - Immediate feedback on your answers.
+    
+        ![screenshot](documentation/features/feature-interactive.png)
 
 - **Progress Reset Option:**
 
     - If the user has already completed the quiz, they will be prompted to reset their progress by pressing “R” when they open the app again.
+        
+        ![screenshot](documentation/features/feature-reset.png)
+
 
 
 
@@ -61,20 +70,105 @@ The Text-Based Quiz Game is a Python application that tests your knowledge throu
 - [![Python](https://img.shields.io/badge/Python-grey?logo=python&logoColor=3776AB)](https://www.python.org) used as the back-end programming language.
 - [![Heroku](https://img.shields.io/badge/Heroku-grey?logo=heroku&logoColor=430098)](https://www.heroku.com) used for hosting the deployed back-end site.
 - [![Google Sheets](https://img.shields.io/badge/Google_Sheets-grey?logo=googlesheets&logoColor=34A853)](https://docs.google.com/spreadsheets) used for storing data from my Python app.
-- [![Figma](https://img.shields.io/badge/Figma-grey?logo=figma&logoColor=F24E1E)](https://www.figma.com) used for creating wireframes.
 - [![ChatGPT](https://img.shields.io/badge/ChatGPT-grey?logo=chromatic&logoColor=75A99C)](https://chat.openai.com) used to produce content and explain things.
+- [![badge](https://img.shields.io/badge/Mermaid-grey?logo=mermaid&logoColor=FF3670)](https://mermaid.live) Generate an interactive diagram for the data/schema.
 
 ## Data Model
 
-### Flowchart
+I have used [Mermaid](https://mermaid.live) to generate some diagrams for my application.
 
-To follow best practice, a flowchart was created for the app's logic,
-and mapped out before coding began using a free version of
-[Lucidchart](https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning) and/or [Draw.io](https://www.draw.io).
+- **Class Diagram**
 
-Below is the flowchart of the main process of this Python program. It shows the entire cycle of the program.
+```mermaid
+classDiagram
+    class Printable {
+        <<abstract>>
+    }
 
-![screenshot](documentation/flowchart.png)
+    class Question {
+        - text: str
+        - answers: list
+        - correct_answer: str
+        - difficulty: str
+        + __init__(text, answers, correct_answer, difficulty)
+    }
+
+    class Answer {
+        - text: str
+        - _is_correct: bool
+        + __init__(text, is_correct)
+    }
+
+    class Sheet {
+        - name: str
+        + __init__(name)
+        + connect()
+    }
+
+    class QuestionSheet {
+        - level: str
+        - category: str
+        + __init__(level, category)
+        + get_name()
+    }
+
+    class UserDataSheet {
+        - username: str
+        + __init__(username)
+        + retrieve_user_data()
+        + update_sheet()
+    }
+
+    Printable <|-- Question
+    Printable <|-- Answer
+    Sheet <|-- QuestionSheet
+    Sheet <|-- UserDataSheet
+```
+
+- **Sequence Diagram**
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant QuestionSheet
+    participant Sheet
+    participant GoogleSheetAPI
+
+    User ->> QuestionSheet: Request question (level, category)
+    QuestionSheet ->> Sheet: Connect to Google Sheet
+    Sheet ->> GoogleSheetAPI: Fetch data for level_category
+    GoogleSheetAPI -->> Sheet: Return data
+    Sheet -->> QuestionSheet: Send question data
+    QuestionSheet -->> User: Return random question
+```
+
+- **Entity Relationship**
+
+```mermaid
+erDiagram
+    QUESTION {
+        text string
+        correct_answer string
+        difficulty string
+    }
+    ANSWER {
+        text string
+        is_correct boolean
+    }
+    SHEET {
+        name string
+    }
+    QUESTIONSHEET {
+        level string
+        category string
+    }
+    USERDATASHEET {
+        username string
+    }
+    QUESTION ||--|{ ANSWER: contains
+    SHEET ||--|| QUESTIONSHEET: extends
+    SHEET ||--|| USERDATASHEET: extends
+```
 
 ### Classes & Functions
 
