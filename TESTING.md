@@ -15,7 +15,7 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 | quiz_app | sheet.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/NourShbair/quiz/main/quiz_app/model/sheet.py) | ![screenshot](documentation/validation/validate-sheet.png) | |
 | quiz_app | user.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/NourShbair/quiz/main/quiz_app/model/user.py) | ![screenshot](documentation/validation/validate-user.png) | |
 | quiz_app | utils.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/NourShbair/quiz/main/quiz_app/model/utils.py) | ![screenshot](documentation/validation/validate-utils.png) | |
-| quiz_app | constants.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/NourShbair/quiz/main/quiz_app/view/constants.py) | ![screenshot](documentation/validation/path-to-screenshot.png) | |
+| quiz_app | constants.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/NourShbair/quiz/main/quiz_app/view/constants.py) | ![screenshot](documentation/validation/validate-constants.png) | |
 | quiz_app | printer.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/NourShbair/quiz/main/quiz_app/view/printer.py) | ![screenshot](documentation/validation/validate-printer.png) | |
 |  | run.py | [PEP8 CI](https://pep8ci.herokuapp.com/https://raw.githubusercontent.com/NourShbair/quiz/main/run.py) | ![screenshot](documentation/validation/validate-run.png) | |
 
