@@ -35,8 +35,8 @@ def main():
                 print("\n")
                 colored_print(
                     "You've already finish all the levels, "
-                    "Enter R to restart the quiz."
-                    , constants.GREEN, "center")
+                    "Enter R to restart the quiz.",
+                    constants.GREEN, "center")
                 entered_value = input(constants.CENTER_SPACE)
                 if entered_value == "R":
                     restart_quiz(user)

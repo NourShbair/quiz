@@ -5,6 +5,7 @@
 [![GitHub repo size](https://img.shields.io/github/repo-size/NourShbair/quiz)](https://github.com/NourShbair/quiz)
 
 The Text-Based Quiz Game is a Python application that tests your knowledge through a series of questions across various topics. The game features three difficulty levels—**Easy**, **Medium**, and **Hard**—and offers questions in three engaging categories: **Science**, **History**, and **Shows**.
+Additionally, the game uses Google Sheets as a data storage solution, allowing you to seamlessly continue from where you left off if you close and reopen the app, ensuring a smooth and uninterrupted experience.
 
 ![screenshot](documentation/mockup-1.png)
 ![screenshot](documentation/mockup-2.png)
@@ -295,7 +296,6 @@ I've used the following Python packages and/or external imported packages.
 
 - `gspread`: used with the Google Sheets API
 - `google.oauth2.service_account`: used for the Google Sheets API credentials
-- `os`: used for adding a `clear()` function
 - `colorama`: used for including color in the terminal
 - `random`: used to get a random choice from a list
 - `shutil`: used to get terminal size
