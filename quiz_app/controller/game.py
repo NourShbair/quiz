@@ -66,7 +66,6 @@ def validate_answer(question, answer):
             constants.YELLOW,
             "center",
         )
-        print("\n")
         answer = input(constants.CENTER_SPACE)
         return validate_answer(question, answer)
     else:
@@ -99,7 +98,7 @@ def continue_play(user, user_data, question):
             colored_print(
                 "Incorrect answer, please try again:", constants.RED, "center"
             )
-            second_answer = int(input(constants.CENTER_SPACE))
+            second_answer = input(constants.CENTER_SPACE)
             if validate_answer(question, second_answer):
                 user_data.points += min_points
                 user_data.question_number += 1
@@ -107,6 +106,7 @@ def continue_play(user, user_data, question):
                 question = get_question(user_data)
             else:
                 correct = question.correct_answer
+                print("\n")
                 colored_print(
                     f"Sorry, incorrect again, correct answer is: {correct}",
                     constants.RED,

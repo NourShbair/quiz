@@ -38,7 +38,7 @@ The Text-Based Quiz Game is a Python application that tests your knowledge throu
 - **Interactive Gameplay:**
 
     - Immediate feedback on your answers.
-    
+
         ![screenshot](documentation/features/feature-interactive.png)
 
 - **Progress Reset Option:**
@@ -64,9 +64,8 @@ The Text-Based Quiz Game is a Python application that tests your knowledge throu
 - [![Git](https://img.shields.io/badge/Git-grey?logo=git&logoColor=F05032)](https://git-scm.com) used for version control. (`git add`, `git commit`, `git push`)
 - [![GitHub](https://img.shields.io/badge/GitHub-grey?logo=github&logoColor=181717)](https://github.com) used for secure online code storage.
 - [![VSCode](https://img.shields.io/badge/VSCode-grey?logo=visualstudiocode&logoColor=007ACC)](https://code.visualstudio.com) used as my local IDE for development.
-- [![HTML](https://img.shields.io/badge/HTML-grey?logo=html5&logoColor=E34F26)](https://en.wikipedia.org/wiki/HTML) used for the main site content.
-- [![CSS](https://img.shields.io/badge/CSS-grey?logo=css3&logoColor=1572B6)](https://en.wikipedia.org/wiki/CSS) used for the main site design and layout.
-- [![JavaScript](https://img.shields.io/badge/JavaScript-grey?logo=javascript&logoColor=F7DF1E)](https://www.javascript.com) used for user interaction on the site.
+- [![HTML](https://img.shields.io/badge/HTML-grey?logo=html5&logoColor=E34F26)](https://en.wikipedia.org/wiki/HTML) used for change the start button text.
+- [![CSS](https://img.shields.io/badge/CSS-grey?logo=css3&logoColor=1572B6)](https://en.wikipedia.org/wiki/CSS) used for update the layout of the template.
 - [![Python](https://img.shields.io/badge/Python-grey?logo=python&logoColor=3776AB)](https://www.python.org) used as the back-end programming language.
 - [![Heroku](https://img.shields.io/badge/Heroku-grey?logo=heroku&logoColor=430098)](https://www.heroku.com) used for hosting the deployed back-end site.
 - [![Google Sheets](https://img.shields.io/badge/Google_Sheets-grey?logo=googlesheets&logoColor=34A853)](https://docs.google.com/spreadsheets) used for storing data from my Python app.
@@ -262,6 +261,7 @@ class UserDataSheet(Sheet):
         super().__init__("users")
 ```
 
+
 The primary functions used on this application are:
 
 - `show_introduction()`
@@ -278,6 +278,14 @@ The primary functions used on this application are:
     - Get the question depending on user data and pass these values to continue_play() function to continue the process.
 - `restart_quiz()`
     -  Reset the quiz from the first question.
+- `get_user_data()`
+    -  This function for retrieving the user data from user worksheet and store it in User object
+- `get_random_question()`
+    -  This function for retrieving a random question from the appropriate worksheet depending on its name
+- `update_user_sheet()`
+    -  This function to update the sheet with new records of the user
+- `create_user()`
+    -  This function to create new user and update the sheet with new records of the user
 - `main()`
     - Run all program functions.
 

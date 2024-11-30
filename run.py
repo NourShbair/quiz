@@ -43,6 +43,7 @@ def main():
             else:
                 start_play(user)
         else:
+            print("\n")
             colored_print(
                 "Invalid username, please choose a username contains "
                 "at least one character",
